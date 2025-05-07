@@ -1,0 +1,238 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Comic Neue', cursive;
+  background-color: #0b1126;
+  color: white;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ⭐ Stelle distribuite a effetto random */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(white 1px, transparent 1px),
+    radial-gradient(white 1px, transparent 1px),
+    radial-gradient(white 1px, transparent 1px);
+  background-size: 150px 150px, 250px 250px, 350px 350px;
+  background-position:
+    23% 19%,
+    57% 33%,
+    81% 73%;
+  animation: gentleTwinkle 8s ease-in-out infinite;
+  opacity: 0.25;
+}
+
+@keyframes gentleTwinkle {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.5; }
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: rgba(18, 18, 64, 0.85);
+  border: 2px solid #f08dd1;
+  border-radius: 20px;
+  box-shadow: 0 0 25px #f08dd177;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.2rem;
+  background: linear-gradient(45deg, #ff9ecb, #ffc8f2, #e0c3ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 8px #f08dd1aa;
+}
+
+h2 {
+  font-size: 1.5rem;
+  color: #ffc8f2;
+}
+
+p {
+  font-size: 1.1rem;
+  color: #eaeaea;
+}
+
+#quiz-container {
+  margin: 1.5rem 0;
+}
+
+/* 🔘 Bottoni */
+.answer-btn,
+#start-btn,
+#next-btn {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: 12px auto;
+  padding: 14px 0;
+  font-size: 1rem;
+  text-align: center;
+  background: linear-gradient(135deg, #f08dd1, #d06bb4);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #f08dd177;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.answer-btn:hover,
+#start-btn:hover,
+#next-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #ffb5e0;
+}
+
+/* 🌟 Finale con punto interrogativo */
+.finale {
+  position: relative;
+  padding: 2rem 1rem;
+}
+
+.question-mark {
+  font-size: 15rem;
+  animation: tremble 0.5s infinite;
+  transition: opacity 0.5s ease;
+}
+
+.question-mark.hidden {
+  opacity: 0;
+  animation: none;
+}
+
+@keyframes tremble {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(3deg); }
+  50% { transform: rotate(-3deg); }
+  75% { transform: rotate(2deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* 🎁 Immagine regalo */
+.gift-image {
+  margin-top: 2rem;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 1s ease;
+}
+
+.gift-image img {
+  max-width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 0 25px #fff6;
+}
+
+.gift-image:not(.hidden) {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.hidden {
+  display: none;
+}
+
+/* 🎊 Coriandoli a spruzzo */
+.confetti {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  overflow: visible;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 10;
+  transform: translate(-50%, -50%);
+}
+
+.confetti.show {
+  opacity: 1;
+}
+
+.confetti span {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: red;
+  opacity: 0.9;
+  animation: spray 3s ease-out forwards;
+  transform: translate(0, 0);
+  --x: 0;
+  --y: 0;
+}
+.confetto {
+  animation: popConfetti 1s ease-out forwards;
+}
+
+@keyframes popConfetti {
+  0% {
+    transform: translate(0, 0) scale(0.5);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--x), var(--y)) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes confettiFall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(600px) rotate(720deg); opacity: 0.5; }
+}
+
+
+@keyframes spray {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--x), var(--y)) scale(0.8);
+    opacity: 0;
+  }
+}
+
+/* 📱 Responsive */
+@media screen and (max-width: 600px) {
+  .container {
+    margin: 1.5rem 1rem;
+    padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  .answer-btn,
+  #start-btn,
+  #next-btn {
+    font-size: 1rem;
+    padding: 12px 20px;
+    width: 100%;
+  }
+}
