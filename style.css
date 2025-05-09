@@ -236,3 +236,21 @@ p {
     width: 100%;
   }
 }
+.frase-luminosa {
+  font-size: 2rem;
+  color: #fff;
+  text-align: center;
+  margin-top: 40px;
+  font-weight: bold;
+  text-shadow: 0 0 5px #ff66cc, 0 0 10px #ff66cc, 0 0 20px #ff66cc;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px #ff66cc, 0 0 10px #ff66cc, 0 0 20px #ff66cc;
+  }
+  to {
+    text-shadow: 0 0 10px #ff99dd, 0 0 20px #ff99dd, 0 0 30px #ff99dd;
+  }
+}

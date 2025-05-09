@@ -97,7 +97,7 @@ function showResult() {
 
       const confettiContainer = document.querySelector('.confetti');
       confettiContainer.classList.add('show');
-      confettiContainer.innerHTML = ''; // pulizia vecchi
+      confettiContainer.innerHTML = '';
 
       for (let i = 0; i < 150; i++) {
         const dot = document.createElement('span');
@@ -116,6 +116,14 @@ function showResult() {
 
         confettiContainer.appendChild(dot);
       }
+
+      // Mostra la frase luminosa
+      const frase = document.createElement("div");
+      frase.className = "frase-luminosa";
+      frase.textContent = `Però non disperare, un altro pensiero è già arrivato e ti verrà donato.
+      Cosa nasconde l’universo fatato? Domenica il segreto sarà svelato.`;
+      result.appendChild(frase);
+
     }, 1000);
 
   } else {
